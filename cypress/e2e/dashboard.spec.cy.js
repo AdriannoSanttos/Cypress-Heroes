@@ -1,0 +1,91 @@
+describe('Deshboard', () => {
+  it('Deve fazer login com sucesso e redirecionamento', () => {
+    cy.visit('http://localhost:3000/heroes')
+    cy.get("[href='/']").should('be.visible')
+    cy.get('li > .undefined').click()
+    cy.get("[data-cy='email']").type('test@test.com')
+    cy.get("[data-cy='password']").type('test123')
+    cy.get('.text-white').click()
+    cy.get('a > img').should('be.visible')
+  })
+
+  it('Deve verificar layout do Dashboard', () => {
+    cy.visit('http://localhost:3000/heroes')
+    cy.get("[href='/']").should('be.visible')
+    cy.get('li > .undefined').click()
+    cy.get("[data-cy='email']").type('test@test.com')
+    cy.get("[data-cy='password']").type('test123')
+    cy.get('.text-white').click()
+    cy.get('a > img').should('be.visible')
+    cy.get('li > .undefined').should('be.visible')
+    cy.get('.shadow-md').eq(0).should('be.visible')
+    cy.get('.shadow-md').eq(1).should('be.visible')
+    cy.get('.shadow-md').eq(2).should('be.visible')
+    cy.get('.shadow-md').eq(3).should('be.visible')
+    cy.get('.shadow-md').eq(4).should('be.visible')
+    cy.get('.shadow-md').eq(5).should('be.visible')
+    cy.get('.shadow-md').eq(6).should('be.visible')
+  })
+
+  it('Deve verificar que existem exatamente 7 cards no Dashboard', () => {
+    cy.visit('http://localhost:3000/heroes')
+    cy.get("[href='/']").should('be.visible')
+    cy.get('li > .undefined').click()
+    cy.get("[data-cy='email']").type('test@test.com')
+    cy.get("[data-cy='password']").type('test123')
+    cy.get('.text-white').click()
+    cy.get('a > img').should('be.visible')
+    cy.get('.shadow-md')
+      .should('have.length', 7)
+      .each(($card) => {
+        expect($card).to.be.visible
+        expect($card.text().trim()).to.not.be.empty
+      })
+  })
+
+  it('Deve Verificar nome e imagem de heróis (1 ao 7)', () => {
+    cy.visit('http://localhost:3000/heroes')
+    cy.get("[href='/']").should('be.visible')
+    cy.get('li > .undefined').click()
+    cy.get("[data-cy='email']").type('test@test.com')
+    cy.get("[data-cy='password']").type('test123')
+    cy.get('.text-white').click()
+    cy.get('a > img').should('be.visible')
+    cy.get('.shadow-md').eq(0).should('be.visible')
+    cy.get("[alt='The Smoker']").should('be.visible')
+    cy.get("[data-cy='name']").eq(0).should('contain', 'The Smoker')
+    cy.get("[alt='Warp Speed']").should('be.visible')
+    cy.get("[data-cy='name']").eq(1).should('contain', 'Warp Speed')
+    cy.get("[alt='Cyonic']").should('be.visible')
+    cy.get("[data-cy='name']").eq(2).should('contain', 'Cyonic')
+    cy.get("[alt='The Librarian']").should('be.visible')
+    cy.get("[data-cy='name']").eq(3).should('contain', 'The Librarian')
+    cy.get("[alt='Mr Angular']").should('be.visible')
+    cy.get("[data-cy='name']").eq(4).should('contain', 'Mr Angular')
+    cy.get("[alt='Collect Call Paul']").should('be.visible')
+    cy.get("[data-cy='name']").eq(5).should('contain', 'Collect Call Paul')
+    cy.get("[alt='Fly Girl']").should('be.visible')
+    cy.get("[data-cy='name']").eq(6).should('contain', 'Fly Girl')
+   
+  })
+ 
+it('Deve verificar que o botão cifão para os heróis de 1 a 7', () => {
+  cy.visit('http://localhost:3000/heroes')
+  cy.get("[href='/']").should('be.visible')
+  cy.get('li > .undefined').click()
+  cy.get("[data-cy='email']").type('test@test.com')
+  cy.get("[data-cy='password']").type('test123')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(0).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 94?')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'The Smoker')
+  cy.get('.text-white').click()
+  
+  
+    
+  
+})
+
+
+})
+
