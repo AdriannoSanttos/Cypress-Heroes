@@ -69,7 +69,7 @@ describe('Deshboard', () => {
    
   })
  
-it('Deve verificar que o botão cifão para os heróis de 1 a 7', () => {
+it('Deve verificar que o botão cifão para os heróis de 1 ao 7 e fazer logout', () => {
   cy.visit('http://localhost:3000/heroes')
   cy.get("[href='/']").should('be.visible')
   cy.get('li > .undefined').click()
@@ -78,11 +78,43 @@ it('Deve verificar que o botão cifão para os heróis de 1 a 7', () => {
   cy.get('.text-white').click()
   cy.get("[data-cy='money']").eq(0).click()
   cy.get('p.text-sm').should('contain', 'Hire this hero for 94?')
+  cy.get("[alt='The Smoker']").eq(1).should('be.visible')
   cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'The Smoker')
   cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(1).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 50?')
+  cy.get("[alt='Warp Speed']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'Warp Speed')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(2).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 95?')
+  cy.get("[alt='Cyonic']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'Cyonic')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(3).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 62?')
+  cy.get("[alt='The Librarian']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'The Librarian')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(4).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 94?')
+  cy.get("[alt='Mr Angular']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'Mr Angular')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(5).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 98?')
+  cy.get("[alt='Collect Call Paul']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'Collect Call Paul')
+  cy.get('.text-white').click()
+  cy.get("[data-cy='money']").eq(6).click()
+  cy.get('p.text-sm').should('contain', 'Hire this hero for 78?')
+  cy.get("[alt='Fly Girl']").eq(1).should('be.visible')
+  cy.get('.gap-4 > .flex-col > .mb-1').should('contain', 'Fly Girl')
+  cy.get('.text-white').click()
+  cy.get('.text-gray-800').eq(0).click()
   
   
-    
+  
   
 })
 
