@@ -1,51 +1,27 @@
+ import { userData } from '../support/userData'
+
+const selectors = {
+  likeButton: "[data-cy='like']",
+  moneyButton: "[data-cy='money']",
+  messageText: ".text-gray-500",
+  heroName: ".text-gray-800",
+  heroBorder: ".border-gray-300"
+};
+
 describe('Home Screen', () => {
   it('Na tela inicial ao clicar nos botões like e cifrão dos heróis deve aparecer uma mensagem de erro', () => {
-  cy.visit('http://localhost:3000/heroes')
-  cy.get("[data-cy='like']").eq(0).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(0).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(1).click()
-  cy.get(".text-gray-500").eq(8).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(1).click()
-  cy.get('.text-gray-500').eq(8).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(2).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(2).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(3).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(3).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(4).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(4).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(5).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(5).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
-  cy.get("[data-cy='like']").eq(6).click()
-  cy.get(".text-gray-500").eq(9).should('contain', 'You must log in to like.')
-  cy.get('.text-gray-800').eq(15).click()
-  cy.get("[data-cy='money']").eq(6).click()
-  cy.get('.text-gray-500').eq(9).should('contain', 'You must log in to hire this hero.')
-  cy.get('.border-gray-300').eq(15).click()
- 
- 
- 
-  
+    cy.visit(userData.baseUrl)
+
+    for (let i = 0; i <= 6; i++) {
+      cy.get(selectors.likeButton).eq(i).click()
+      cy.get(selectors.messageText).eq(9).should('contain', userData.likeError)
+
+      cy.get(selectors.heroName).eq(15).click()
+
+      cy.get(selectors.moneyButton).eq(i).click()
+      cy.get(selectors.messageText).eq(9).should('contain', userData.hireError)
+
+      cy.get(selectors.heroBorder).eq(15).click()
+    }
   })
-});
+})
